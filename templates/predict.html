@@ -1,0 +1,179 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <meta content="width=device-width, initial-scale=1.0" name="viewport">
+
+  <!-- <title>Market Basket Analysis</title> -->
+  <title>LEND SMART</title>
+  <meta content="" name="descriptison">
+  <meta content="" name="keywords">
+
+  <!-- Favicons -->
+  <link href="/static/assets/img/favicon.png" rel="icon">
+  <link href="/static/assets/img/apple-touch-icon.png" rel="apple-touch-icon">
+
+  <!-- Google Fonts -->
+  <link
+    href="/static/https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i|Raleway:300,300i,400,400i,500,500i,600,600i,700,700i|Poppins:300,300i,400,400i,500,500i,600,600i,700,700i"
+    rel="stylesheet">
+
+  <!-- Vendor CSS Files -->
+  <link href="/static/assets/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+  <link href="/static/assets/vendor/icofont/icofont.min.css" rel="stylesheet">
+  <link href="/static/assets/vendor/boxicons/css/boxicons.min.css" rel="stylesheet">
+  <link href="/static/assets/vendor/venobox/venobox.css" rel="stylesheet">
+  <link href="/static/assets/vendor/aos/aos.css" rel="stylesheet">
+
+
+  <link href="/static/assets/css/style.css" rel="stylesheet">
+
+
+</head>
+
+<body>
+
+  <style>
+    body {
+      background-image: url({{url_for('static', filename='assets/img/Loan.jpg')}});
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    background-size: 100% 100%;
+    -webkit-backdrop-filter: blur(4px);
+    backdrop-filter: blur(4px);  
+
+    }
+
+    input {
+      -moz-border-radius: 15px;
+      border-radius: 15px;
+      border: solid 1px black;
+      padding: 5px;
+    }
+  </style>
+
+  <!-- ======= Header ======= -->
+  <header id="header">
+    <div class="container d-flex">
+
+      <div class="logo mr-auto">
+        <h1 class="text-light"><a href="/static/index.html">LOAN STATUS PREDICTION<span></span></a></h1>
+        <!-- Uncomment below if you prefer to use an image logo -->
+        <!-- <a href="index.html"><img src="assets/img/logo.png" alt="" class="img-fluid"></a>-->
+      </div>
+
+      <nav class="nav-menu d-none d-lg-block">
+        <ul>
+          <li class=""><a href="/">HOME</a></li>
+          <li><a href="/eda">EDA</a></li>
+          <li class="active"><a href="/predict">PREDICTION</a></li>
+        </ul>
+      </nav>
+
+    </div>
+  </header>
+
+  <section id="Loan">
+
+
+    <form action='/search' method='POST'>
+
+      <!-- <h4 style="text-align: center; position: relative; bottom: 30px;">Min Support:</h4>
+      <input type="number" placeholder="Min Support" name="min_s" id="min_s" step=0.01
+        style="position: relative; left: 600px; text-align: center; bottom: 30px;" aria-label="Enter Support">
+      <br><br><br>
+
+      <h4 style="text-align: center; position: relative; bottom: 30px;">Min Confidence:</h4>
+      <input type="number" placeholder="Min Threshold" name="min_t" id="min_t" step=0.01
+        style="position: relative; left: 600px; text-align:center; bottom: 30px;" aria-label="Enter Confidence" >
+      <br><br><br> -->
+
+      
+      <!-- Last Payment Amount: -->
+      <br>
+      <center style='position: relative; right : 20px; bottom: 70px; font-weight:750; font-size:23px; color: black;'>Last Payment Amount</center>
+      <input type="number" placeholder="Enter Last Payment Amount" name="last_pay_amt" id="last_pay_amt" step=100
+        aria-label="Enter Content" style="position: relative; left: 500px; text-align:center; bottom: 70px; width: 500px; font-size:22px">
+      <!-- <br> -->
+      
+
+      <!-- FICO Range: -->
+      <br>
+      <center style='position: relative; right : 20px; bottom: 60px; font-weight:750; font-size:23px;color: black;'>FICO Range</center>
+      <input type="number" placeholder="Enter FICO Range" name="fico_range" id="fico_range" step=10
+        aria-label="Enter Content" style="position: relative; left: 500px; text-align:center; bottom: 60px; width: 500px; font-size:22px">
+      <!-- <br> -->
+
+      <!-- Interest Rate: -->
+
+      <br>
+      <center style='position: relative; right : 20px; bottom: 50px; font-weight:750; font-size:23px; color: black;'>Interest Rate</center>
+      <input type="number" placeholder="Enter Interest Rate" name="int_rate" id="int_rate" step=0.01
+        aria-label="Enter Content" style="position: relative; left: 500px; text-align:center; bottom: 50px; width: 500px; font-size:22px">
+      <!-- <br> -->
+
+      <!-- DTI Ratio: -->
+      <br>
+      <center style='position: relative; right : 25px; bottom: 40px; font-weight:750; font-size:23px; color: black;'>DTI Ratio</center>
+      <input type="number" placeholder="Enter DTI" name="dti" id="dti" step=0.1
+        aria-label="Enter Content" style="position: relative; left: 500px; text-align:center; bottom: 40px; width: 500px; font-size:22px">
+      <!-- <br> -->
+      
+
+      <!-- Loan Term: -->
+      <br>
+      <center style='position: relative; right : 27px; bottom: 30px; font-weight:750; font-size:23px; color: black;'>Loan Term</center>
+      <!-- <select name="cars" id="cars" style="position: relative; left: 500px; text-align:center; bottom: 30px; width: 500px">
+        <option value="36">36</option>
+        <option value="60">60</option>
+      </select> -->
+      <input type="number" placeholder="Enter Loan Term" name="term" id="term" 
+        aria-label="Enter Content" style="position: relative; left: 500px; text-align:center; bottom: 30px; width: 500px; font-size:22px">
+      <br> 
+      
+      
+      <input type='submit' value="SUBMIT" style="position: relative; left: 690px; width: 120px; bottom: 0px; font-weight:600; font-size:19px;">
+
+    </form>
+
+    <div class="container">
+
+      <div class="row d-flex align-items-center">
+        <center style='position: relative; left:550px; top: 30px; font-weight:900; font-size:45px; color:rgb(4, 4, 83);'>{{output}}</center>
+        <!-- <div class=" col-lg-6 py-5 py-lg-0 order-2 order-lg-1" data-aos="fade-right"
+          style="position: relative; left: 450px; top: 30px;">
+          {% for table in tables %}
+          {{ table|safe }}
+          {% endfor %}
+          <!-- <h6>{{output}}</h6> -->
+          <h2></h2>
+
+
+        </div> 
+        <div class="col-lg-6 order-1 order-lg-2 Loan-img" data-aos="fade-left">
+          <!-- <img src="/static/assets/img/Loan.jpg" class="img-fluid" alt=""> -->
+        </div>
+      </div>
+    </div>
+
+  </section>
+  <a href="#" class="back-to-top"><i class="icofont-simple-up"></i></a>
+  <!-- Vendor JS Files -->
+  <script src="/static/assets/vendor/jquery/jquery.min.js"></script>
+  <script src="/static/assets/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+  <script src="/static/assets/vendor/jquery.easing/jquery.easing.min.js"></script>
+  <script src="/static/assets/vendor/php-email-form/validate.js"></script>
+  <script src="/static/assets/vendor/isotope-layout/isotope.pkgd.min.js"></script>
+  <script src="/static/assets/vendor/venobox/venobox.min.js"></script>
+  <script src="/static/assets/vendor/aos/aos.js"></script>
+
+  <!-- Template Main JS File -->
+  <script src="/static/assets/js/main.js"></script>
+
+  <body style="background-color:powderblue;"></body>
+
+
+</body>
+
+</html>
